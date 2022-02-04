@@ -7,6 +7,7 @@ import javax.persistence.NoResultException;
 import org.springframework.stereotype.Service;
 
 import com.ecom.app.entity.Account;
+import com.ecom.app.entity.Policy;
 
 @Service
 public interface IAccountService {
@@ -18,4 +19,5 @@ public interface IAccountService {
 	public boolean checkAccountByID(int accountNumber);
 	
 	public List<Account> getAccountsByCity(String cityName)throws NoResultException;
+	public boolean addPolicy(int accountNumber,int policyId);
 }

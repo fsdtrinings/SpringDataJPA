@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import com.ecom.app.entity.Account;
+import com.ecom.app.entity.Policy;
 
 public class CustomAccountRepositoryImpl implements CustomAccountRepository {
 
@@ -38,4 +39,26 @@ public class CustomAccountRepositoryImpl implements CustomAccountRepository {
 		}
 	}
 
+	
+	
+	
+	
+	
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
