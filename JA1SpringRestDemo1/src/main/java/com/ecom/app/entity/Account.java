@@ -13,6 +13,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 
 
 
@@ -24,7 +27,9 @@ public class Account {
 	@GeneratedValue(strategy=GenerationType.AUTO,generator="mylogic")
 	private int accountNumber;
 	
+	@NotNull(message = "Account Name Cannot be left Blank")
 	private String accountName;
+	@Min(value = 5000,message = "Min Balance Limit is 5000")
 	private int balance;
 	private String pannumber;
 	private long aadharNumber;

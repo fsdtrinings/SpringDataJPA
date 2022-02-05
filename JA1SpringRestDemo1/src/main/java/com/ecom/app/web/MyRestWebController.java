@@ -2,11 +2,14 @@ package com.ecom.app.web;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +28,7 @@ import com.ecom.app.service.IAccountService;
 
 @RestController
 @RequestMapping("/app")
+@Validated
 public class MyRestWebController {
 
 	@Autowired
@@ -43,14 +47,18 @@ public class MyRestWebController {
 	}
 	
 	@PostMapping("/account")
-	public boolean saveAccount(@RequestBody Account a)
-			 throws InsufficientBalanceException,InvalidIFSCCodeException
+	public boolean saveAccount(@RequestBody @Valid Account a)
+			 throws InvalidIFSCCodeException
 	{
-		if(a.getBalance()<5000)
+		/*if(a.getBalance()<5000)
 		{
 			throw new InsufficientBalanceException(a.getBalance());
 		}
-		else service.saveAccount(a);
+		else service.saveAccount(a);*/
+		
+		System.out.println("--->> "+a.getAccountName()+" - "+a.getBalance());
+		
+		service.saveAccount(a);
 		return true;
 	}
 	

@@ -43,7 +43,6 @@ public class AccountServiceImpl implements IAccountService {
 		repository.deleteById(accountNumber);
 		return true;
 	}
-	
 	@Override
 	public boolean checkAccountByID(int accountNumber) {
 		return repository.existsById(accountNumber);
