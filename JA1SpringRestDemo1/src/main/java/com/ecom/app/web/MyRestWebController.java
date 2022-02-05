@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecom.app.dto.AccountOnwerBasicInfoDTO;
+import com.ecom.app.dto.AccountSavePostDTO;
 import com.ecom.app.entity.Account;
 import com.ecom.app.entity.Policy;
 import com.ecom.app.exceptions.InsufficientBalanceException;
@@ -47,7 +49,7 @@ public class MyRestWebController {
 	}
 	
 	@PostMapping("/account")
-	public boolean saveAccount(@RequestBody @Valid Account a)
+	public ResponseEntity<AccountOnwerBasicInfoDTO> saveAccount(@RequestBody @Valid AccountSavePostDTO a)
 			 throws InvalidIFSCCodeException
 	{
 		/*if(a.getBalance()<5000)
@@ -58,8 +60,8 @@ public class MyRestWebController {
 		
 		System.out.println("--->> "+a.getAccountName()+" - "+a.getBalance());
 		
-		service.saveAccount(a);
-		return true;
+		AccountOnwerBasicInfoDTO dto =  service.saveAccount(a);
+		return new ResponseEntity<AccountOnwerBasicInfoDTO>(dto,HttpStatus.OK);
 	}
 	
 	@GetMapping("/accountslist")

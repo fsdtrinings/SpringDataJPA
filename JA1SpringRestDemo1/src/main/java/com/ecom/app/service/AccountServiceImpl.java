@@ -8,11 +8,14 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ecom.app.dto.AccountOnwerBasicInfoDTO;
+import com.ecom.app.dto.AccountSavePostDTO;
 import com.ecom.app.entity.Account;
 import com.ecom.app.entity.Policy;
 import com.ecom.app.repository.AccountDB;
 import com.ecom.app.repository.IAccountRepository;
 import com.ecom.app.repository.IPolicyRepository;
+import com.ecom.app.util.AccountDTOConvertionClass;
 
 @Service
 public class AccountServiceImpl implements IAccountService {
@@ -23,10 +26,18 @@ public class AccountServiceImpl implements IAccountService {
 	@Autowired
 	IPolicyRepository policyRepository;
 	
+	
+	@Autowired
+	AccountDTOConvertionClass dtoConvertion;
+	
 	@Override
-	public boolean saveAccount(Account account) {
-		repository.save(account);
-		return true;
+	public AccountOnwerBasicInfoDTO saveAccount(AccountSavePostDTO accountDto) {
+		
+		Account a = dtoConvertion.getAccountFromPostAccountDTO(accountDto);
+		
+		Account savedObj  = repository.save(a);
+		AccountOnwerBasicInfoDTO dtoObj = dtoConvertion.getAccountOwnerBasicDTO(savedObj);
+		return dtoObj;
 	}
 	@Override
 	public Account getAccountById(int accountNumber) {

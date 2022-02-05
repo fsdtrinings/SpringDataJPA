@@ -6,13 +6,15 @@ import javax.persistence.NoResultException;
 
 import org.springframework.stereotype.Service;
 
+import com.ecom.app.dto.AccountOnwerBasicInfoDTO;
+import com.ecom.app.dto.AccountSavePostDTO;
 import com.ecom.app.entity.Account;
 import com.ecom.app.entity.Policy;
 
 @Service
 public interface IAccountService {
 
-	public boolean saveAccount(Account account);
+	public AccountOnwerBasicInfoDTO saveAccount(AccountSavePostDTO account);
 	public Account getAccountById(int accountNumber);
 	public List<Account> getAllAccounts();
 	public boolean deleteAccountByID(int accountNumber);
